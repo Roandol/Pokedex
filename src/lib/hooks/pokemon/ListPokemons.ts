@@ -37,7 +37,7 @@ const morePokemons = debounce(async () => {
         pokemons.update(ps => [...ps, ...more_ps]);
         loading.set(false);
     }
-}, 250)
+}, 250) as () => Promise<void>;
 
 export {
     pokemons,
