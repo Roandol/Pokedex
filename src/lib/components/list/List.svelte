@@ -6,7 +6,7 @@
 	export let list: any[];
 	export let loading: boolean;
 	export let ItemComponent: ComponentType<SvelteComponent>;
-	export let loadMoreItems: () => void;
+	export let loadMoreItems: () => Promise<void>;
 
 	onMount(() => {
 		const lazyLoad = lazyLoadLastItem('ul > li:last-child', loadMoreItems);

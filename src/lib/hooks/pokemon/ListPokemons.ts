@@ -7,9 +7,9 @@ import debounce from "$lib/utils/debounce";
 const search = debounce((value: string) => {
     const list: NamePokemonAPI[] = get(namesPokemons) ?? [];
 
-    if (!value) 
+    if (!value)
         return filteredPokemonsStore.set([]);
-    
+
     const filteredList: NamePokemonAPI[] = list.filter(p => p.name.includes(value.toLocaleLowerCase()));
 
     if (filteredList.length)
@@ -20,22 +20,23 @@ const getUrlImage: UrlImage = {
     animated: (pokemon: PokemonAPI) => pokemon.sprites.other.showdown.front_default,
     default: (pokemon: PokemonAPI) => pokemon.sprites.front_default
 }
-
 const morePokemons = debounce(async () => {
-    if (get(loading)) return;
-    loading.set(true);
-
     const listPokemons = get(pokemons);
     const filteredPokemons = get(filteredPokemonsStore);
 
     const listNamesPokemons = filteredPokemons.length
-        ? filteredPokemons.slice(listPokemons.length, listPokemons.length + 100)
-        : get(namesPokemons).slice(listPokemons.length, listPokemons.length + 100);
+        ? filteredPokemons.slice(listPokemons.length, listPokemons.length + 50)
+        : get(namesPokemons).slice(listPokemons.length, listPokemons.length + 50);
 
-    const more_ps = await getPokemons(listNamesPokemons);
 
-    pokemons.update(ps => [...ps, ...more_ps]);
-    loading.set(false);
+    if (listNamesPokemons.length) {
+        loading.set(true);
+        
+        const more_ps = await getPokemons(listNamesPokemons);
+
+        pokemons.update(ps => [...ps, ...more_ps]);
+        loading.set(false);
+    }
 }, 250)
 
 export {

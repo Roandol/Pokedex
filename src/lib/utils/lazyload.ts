@@ -1,9 +1,16 @@
-export const lazyLoadLastItem = (query: string, func: () => void) => {
-    return () => {
+export const lazyLoadLastItem = (query: string, func: () => Promise<void>) => {
+    let loadmore = true;
+    return async () => {
+        if (!loadmore) return;
+
         const lastItem = document.querySelector(query);
         
-        if (lastItem && (lastItem.getBoundingClientRect().bottom - 1000) <= window.innerHeight) {
-            func();
+        if (lastItem && (lastItem.getBoundingClientRect().bottom) <= window.innerHeight) {
+            loadmore = false;
+
+            await func();
+
+            loadmore = true;
         }
     }
 };

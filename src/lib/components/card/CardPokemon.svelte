@@ -53,8 +53,8 @@
 </script>
 
 <a class="flex justify-between w-full md:flex-col hover:bg-slate-300" href={`/pokemons/${item.name}`}>
-    <div class={`${getTypeColor(item.types[0].type)} flex items-center justify-center rounded-xl order-2 md:order-1`}>
-        <img src={getUrlImage.default(item)} alt="pokemon" class="h-30 min-w-32" />
+    <div class={`${getTypeColor(item.types[0].type)} flex items-center justify-center min-h-40 rounded-xl order-2 md:order-1`}>
+        <img src={getUrlImage.default(item)} alt="pokemon" class="h-40 min-w-32" />
     </div>
 	<div class="flex flex-col min-w-40 gap-2 p-4 order-1 md:order-2">
 		<span class="text-lg font-semibold capitalize">Nº {item.id} - {item.name}</span>
