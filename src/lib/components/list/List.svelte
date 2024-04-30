@@ -17,10 +17,10 @@
 	
 </script>
 
-<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6 m-2 gap-2">
+<ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 m-2 gap-2">
 	{#each list as item}
 		{#if item}
-			<li class="flex items-center rounded-xl border border-gray-400 p-12 text-center">
+			<li class="flex items-center rounded-xl border border-gray-400">
 				<svelte:component {item} this={ItemComponent}/>
 			</li>
 		{/if}

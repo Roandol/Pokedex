@@ -14,7 +14,7 @@ interface SpritesForms {
     "front_shiny_female": string | null;
 }
 
-interface SpriteShowdown extends SpritesForms{
+interface SpriteShowdown extends SpritesForms {
 
 }
 
@@ -26,9 +26,25 @@ interface PokemonSprites extends SpritesForms {
     other: SpritesOther;
 }
 
+export interface TypePokemon {
+    name: "normal" | "water" | "fighting" | "flying" | "poison" | "ground" | "rock" | "bug" | "ghost" | "steel" | "fire" | "grass" | "electric" | "psychic" | "ice" | "dragon" | "dark" | "fairy" | "unknown" | "shadow";
+    url: string;
+}
+
+export interface SlotTypePokemon {
+    slot: number;
+    type: TypePokemon;
+}
+
 export interface PokemonAPI {
     name: string;
     id: number;
     sprites: PokemonSprites;
     getUrlImage: () => string;
+    types: SlotTypePokemon[]
+}
+
+export interface UrlImage {
+    animated: (pokemon: PokemonAPI) => string | null;
+    default: (pokemon: PokemonAPI) => string | null;
 }

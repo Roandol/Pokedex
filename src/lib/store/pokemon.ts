@@ -20,17 +20,19 @@ getNamesPokemons().then(nps => {
 });
 
 
-filteredPokemons.subscribe(nps => {
+filteredPokemons.subscribe(async (nps) => {
     loading.set(true);
 
-    if (nps.length)
-        getPokemons(nps.slice(0, limitPerPage)).then(ps => {
-            pokemons.set(ps)
-            loading.set(false);
-        });
-    else
-        getPokemons(get(namesPokemons).slice(0, limitPerPage)).then(ps => {
-            pokemons.set(ps)
-            loading.set(false);
-        });
+    if (nps.length) {
+        const ps = await getPokemons(nps.slice(0, limitPerPage));
+
+        pokemons.set(ps);
+    }
+    else {
+        const ps = await getPokemons(get(namesPokemons).slice(0, limitPerPage))
+
+        pokemons.set(ps)
+    }
+    
+    loading.set(false);
 })
