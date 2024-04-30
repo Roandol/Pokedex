@@ -6,30 +6,31 @@ export const loading = writable(false);
 export const namesPokemons = writable<NamePokemonAPI[]>([]);
 export const filteredPokemons = writable<NamePokemonAPI[]>([]);
 export const pokemons = writable<PokemonAPI[]>([]);
+const limitPerPage = 50;
 
 loading.set(true);
 
 getNamesPokemons().then(nps => {
     namesPokemons.set(nps.results);
-    
-    getPokemons(nps.results.slice(0, 100)).then(ps => {
+
+    getPokemons(nps.results.slice(0, limitPerPage)).then(ps => {
         pokemons.set(ps)
+        loading.set(false);
     });
 });
 
-loading.set(false);
 
 filteredPokemons.subscribe(nps => {
     loading.set(true);
-    
+
     if (nps.length)
-        getPokemons(nps).then(ps => {
+        getPokemons(nps.slice(0, limitPerPage)).then(ps => {
             pokemons.set(ps)
+            loading.set(false);
         });
-    else 
-    getPokemons(get(namesPokemons).slice(0, 100)).then(ps => {
+    else
+        getPokemons(get(namesPokemons).slice(0, limitPerPage)).then(ps => {
             pokemons.set(ps)
+            loading.set(false);
         });
-    
-        loading.set(false);
 })

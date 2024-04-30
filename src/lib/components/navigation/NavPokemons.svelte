@@ -1,7 +1,6 @@
 <script>
-	import ListPokemons from '$lib/hooks/pokemon/ListPokemons';
+	import {search as searchPokemons} from '$lib/hooks/pokemon/ListPokemons';
 
-	const { searchPokemons } = ListPokemons;
 	let pokemonSearched = "";
 
 	const handleSubmit = () => {

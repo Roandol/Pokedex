@@ -5,15 +5,15 @@
 	import { get } from 'svelte/store';
 	import type { PokemonAPI } from '$lib/types';
 
-    const id = $page.params.slug;
+    const name = $page.params.slug;
 	const pokemons = get(pokemonsStore);
     let pokemon: PokemonAPI | void;
 	
     const downloadPokemon = () => {
-		getOnePokemon(id).then((res) => (pokemon = res));
+		getOnePokemon(name).then((res) => (pokemon = res));
 	};
 
-	pokemon = pokemons.find((p) => p.id ===  Number(id)) ?? downloadPokemon();
+	pokemon = pokemons.find((p) => p.name ===  name) ?? downloadPokemon();
 
 	$: console.log(pokemon ?? 'Loading...');
 </script>

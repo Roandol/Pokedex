@@ -25,19 +25,16 @@ const morePokemons = debounce(async () => {
         ? get(filteredPokemons).slice(listPokemons.length, listPokemons.length + 100)
         : get(namesPokemons).slice(listPokemons.length, listPokemons.length + 100);
 
-    console.log(listPokemons.length);
-    
-
     const more_ps = await getPokemons(listNamesPokemons);
 
     pokemons.update(ps => [...ps, ...more_ps]);
     loading_more_ps = false;
 }, 250)
 
-export default {
+export {
     pokemons,
     loading,
-    searchPokemons: search,
+    search,
     getUrlImage,
     morePokemons
 }
