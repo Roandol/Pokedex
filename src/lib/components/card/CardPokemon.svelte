@@ -4,11 +4,9 @@
 
     export let pokemon: PokemonAPI;
     
-    const { name } = pokemon;
-
 </script>
 
-<a class="flex justify-center flex-col" href={`/pokemons/${name}`}>
+<a class="flex justify-center flex-col" href={`/pokemons/${pokemon.name}`}>
     <img src={getUrlImage(pokemon)} alt="pokemon" class="" />
-    <span class="text-lg font-semibold capitalize">{pokemon.id} - {name}</span>
+    <span class="text-lg font-semibold capitalize">{pokemon.id} - {pokemon.name}</span>
 </a>
