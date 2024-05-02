@@ -46,7 +46,7 @@
 			<div class="text-xl px-2 font-semibold capitalize">
 				<div class="grid grid-cols-2 gap-x-5 w-fit">
 					{#each pokemon.stats.slice(1, pokemon.stats.length) as slot}
-						<span>{slot.stat.name}:</span>
+						<span class="text-nowrap">{slot.stat.name}:</span>
 						<span>{slot.base_stat}</span>
 					{/each}
 				</div>
