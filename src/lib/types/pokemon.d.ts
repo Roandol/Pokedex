@@ -14,9 +14,7 @@ interface SpritesForms {
     "front_shiny_female": string | null;
 }
 
-interface SpriteShowdown extends SpritesForms {
-
-}
+type SpriteShowdown = SpritesForms;
 
 interface SpritesOther {
     showdown: SpriteShowdown;
@@ -36,12 +34,24 @@ export interface SlotTypePokemon {
     type: TypePokemon;
 }
 
+interface StatType {
+    name: string;
+    url: string;
+}
+
+export interface SlotStatPokemon {
+    base_stat: number;
+    effort: number;
+    stat: StatType
+}
+
 export interface PokemonAPI {
     name: string;
     id: number;
     sprites: PokemonSprites;
     getUrlImage: () => string;
     types: SlotTypePokemon[]
+    stats: SlotStatPokemon[]
 }
 
 export interface UrlImage {

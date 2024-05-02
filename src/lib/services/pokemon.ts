@@ -1,8 +1,8 @@
-import type { NamePokemonAPI } from "$lib/types";
+import type { NamePokemonAPI } from "$lib/types/pokemon";
 import { get, all } from "./axios";
 
 const pokemonCount = async () => 
-    (await get("pokemon?limit=1")).count;
+    (await get("pokemon?limit=1"))?.count;
 
 export const getNamePokemons = async () => 
     await get(`pokemon?limit=${await pokemonCount()}`);

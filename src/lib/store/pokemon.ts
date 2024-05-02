@@ -1,5 +1,5 @@
 import { getNamePokemons as getNamesPokemons, getPokemons } from "$lib/services/pokemon";
-import type { NamePokemonAPI, PokemonAPI } from "$lib/types";
+import type { NamePokemonAPI, PokemonAPI } from "$lib/types/pokemon";
 import { get, writable, } from "svelte/store";
 
 export const loading = writable(false);

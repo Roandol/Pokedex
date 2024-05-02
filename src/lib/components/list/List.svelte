@@ -25,7 +25,10 @@
 			</li>
 		{/if}
 	{/each}
+</ul>
+
+<div class="flex justify-center">
 	{#if loading}
 		<span>Loading...</span>
 	{/if}
-</ul>
+</div>
